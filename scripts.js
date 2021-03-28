@@ -1,4 +1,3 @@
-
 let photos = [
     '.\\images\\01nyaron-kekben.jpg',
     '.\\images\\02nyaron-szinesben.jpg',
@@ -58,25 +57,33 @@ let imagesData = [
     {photo:photos[8], title:titles[8], description:descriptions[8]},
     {photo:photos[9], title:titles[9], description:descriptions[9]}
 ]
-console.log('beolvasott imagesData: '+imagesData.length);
+/*console.log('beolvasott imagesData: '+imagesData.length);
 console.log('=================');
 console.log('beolvasott thumbnails: '+th.length);
 console.log('=================');
-console.log('beolvasott thumbnail képek indexei');
+console.log('beolvasott thumbnail képek indexei');*/
 let currentPhoto = 0
-
+let thumbnailIndex = 0
 th.forEach(function(entry) {
     $("#th").append(`<img src=${entry} data-number=${th.indexOf(entry)} class="thumbnail"></img>`)
-    console.log(th.indexOf(entry))
+    //console.log(th.indexOf(entry))
 });
-console.log('=================');
+//console.log('=================');
 
 let loadPhoto = (currentPhoto) => {
     $('#photo').attr('src', imagesData[currentPhoto].photo);
     $('#photo-title').text(imagesData[currentPhoto].title);
     $('#photo-description').text(imagesData[currentPhoto].description);
+    activateThumbnail(currentPhoto);
     }
-console.log('nyilakra kattintás képindexe');
+
+let activateThumbnail = (currentPhoto) => {
+    $(`.thumbnail[data-number="${thumbnailIndex}"]`).removeAttr("style")
+    thumbnailIndex = currentPhoto
+    $(`.thumbnail[data-number="${thumbnailIndex}"]`).css("width", "110px")
+    $(`.thumbnail[data-number="${thumbnailIndex}"]`).css("height", "110px")
+}
+//console.log('nyilakra kattintás képindexe');
 //console.log(currentPhoto)
 loadPhoto(currentPhoto);
 
@@ -86,7 +93,7 @@ $('#jobb').click(() => {
         currentPhoto = 0
     }
     loadPhoto(currentPhoto);
-    console.log(currentPhoto)
+    console.log(currentPhoto);
     })
 
 $('#bal').click(() => {
@@ -97,10 +104,10 @@ $('#bal').click(() => {
     loadPhoto(currentPhoto);
     console.log(currentPhoto)
 })
-let clicked = 0;
+
 $('#th').on('click', '.thumbnail', function(event) {
     //console.log("kattintás az indexképen")
-    clicked = $(event.target).attr('data-number')
+    currentPhoto = $(event.target).attr('data-number')
     //console.log(clicked)
-    loadPhoto(clicked);
+    loadPhoto(currentPhoto);
   });
