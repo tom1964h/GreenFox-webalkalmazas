@@ -20,6 +20,17 @@ let th = [
     '.\\images\\thumbnails\\th11alfoldi-domb2.jpg',
     '.\\images\\thumbnails\\th12alfoldi-domb3.jpg',
     '.\\images\\thumbnails\\th16talalkozas-a-nyullal.jpg'];
+let thNames = [
+    'nyitókép',
+    'I.',
+    'II.',
+    'III.',
+    'IV.',
+    'V.',
+    'VI.',
+    'VII',
+    'VIII',
+    'zárókép']
 let titles = [
         'Miért jó dolog? Az arborétum ...',
         'Már csak a szemünknek is jót tesz ...',
@@ -66,9 +77,10 @@ let currentPhoto = 0
 let thumbnailIndex = 0
 th.forEach(function(entry) {
     $("#th").append(`<img src=${entry} data-number=${th.indexOf(entry)} class="thumbnail"></img>`)
-    //console.log(th.indexOf(entry))
 });
-//console.log('=================');
+thNames.forEach(function(entry) {
+    $("#thNames").append(`<p class="thName" data-number=${thNames.indexOf(entry)}>${entry}</p>`)
+});
 
 let loadPhoto = (currentPhoto) => {
     $('#photo').attr('src', imagesData[currentPhoto].photo);
@@ -79,12 +91,12 @@ let loadPhoto = (currentPhoto) => {
 
 let activateThumbnail = (currentPhoto) => {
     $(`.thumbnail[data-number="${thumbnailIndex}"]`).removeAttr("style")
+    /*$(`.thName[data-number="${thumbnailIndex}"]`).css("display", "none")*/
     thumbnailIndex = currentPhoto
     $(`.thumbnail[data-number="${thumbnailIndex}"]`).css("width", "110px")
     $(`.thumbnail[data-number="${thumbnailIndex}"]`).css("height", "110px")
+    /*$(`.thName[data-number="${thumbnailIndex}"]`).css("display", "block")*/
 }
-//console.log('nyilakra kattintás képindexe');
-//console.log(currentPhoto)
 loadPhoto(currentPhoto);
 
 $('#jobb').click(() => {

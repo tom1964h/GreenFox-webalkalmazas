@@ -22,6 +22,19 @@ body {
 #th {
     height: 110px;
     display: flex;
+    flex-direction: row;
+}
+#thNames{
+    display: flex;
+    flex-direction: row;
+}
+.thName{
+    width: 110px;
+    margin: 5px 2px 0 2px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /*display: none;*/
 }
 .thumbnail{
     width: 100px;
@@ -32,7 +45,9 @@ body {
     width: 110px;
     height: 110px;
 }
-
+.thumbnail:hover .thName {
+    display: block;
+  }
 #bal, #jobb {
     margin: 0 30px 0 30px;
     width: 30px;
@@ -54,7 +69,6 @@ body {
 #text-container {
     box-sizing: content-box;
     align-items: stretch;
-    /*max-width: 878px;*/
     position: absolute;
     top: 380px;
     height: 120px;
@@ -67,13 +81,11 @@ body {
 }
 
 #photo-title, #photo-description {
-    //box-sizing: content-box;
-    //width: 1000px;
     padding: 0;
     margin: 0;
 }
 
-p{
+#photo-description{
     font-size: 24px;
 }
 
