@@ -66,7 +66,7 @@ console.log('beolvasott thumbnail képek indexei');
 let currentPhoto = 0
 
 th.forEach(function(entry) {
-    $("#th").append(`<img src=${entry} alt="" class="thumbnail"></img>`)
+    $("#th").append(`<img src=${entry} data-number=${th.indexOf(entry)} class="thumbnail"></img>`)
     console.log(th.indexOf(entry))
 });
 console.log('=================');
@@ -97,3 +97,10 @@ $('#bal').click(() => {
     loadPhoto(currentPhoto);
     console.log(currentPhoto)
 })
+let clicked = 0;
+$('#th').on('click', '.thumbnail', function(event) {
+    //console.log("kattintás az indexképen")
+    clicked = $(event.target).attr('data-number')
+    //console.log(clicked)
+    loadPhoto(clicked);
+  });
